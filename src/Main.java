@@ -26,6 +26,8 @@ public class Main extends JFrame {
       moving = false;
       Point p = getMousePosition();
       grid.paint(g, getMousePosition());
+
+      //Mouse detection
       if (p == null) { //Mouse OOB
         if (prevp != null) { //Mouse is transitioning from inside to OOB
           System.out.println("Pointer Back Out");
@@ -37,14 +39,16 @@ public class Main extends JFrame {
           System.out.println(p);
           prevp = p;
           moving = true;
-        } else if (!prevp.equals(p)) { //Mouse has been moving
+        } else if (!prevp.equals(p)) { //Mouse has been moving inside bounds
           System.out.println(p);
           prevp = p;
           moving = true;
         }
       }
+
+      //Trail Drawing
       boolean trailbool = true;
-      for(int i = 0; i<100 ; i++){ //Trail
+      for(int i = 0; i<100 ; i++){
         trail[i].paint(g);
         if(trailbool && (trail[i].toggle == false)&& moving){
           trail[i].renew(p);
