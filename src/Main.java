@@ -39,7 +39,6 @@ public class Main extends JFrame {
           moving = true;
         } else if (!prevp.equals(p)) {
           System.out.println(p);
-          //boolean trailbool = true;
           prevp = p;
           moving = true;
         }
@@ -47,7 +46,7 @@ public class Main extends JFrame {
       boolean trailbool = true;
       for(int i = 0; i<100 ; i++){
         trail[i].paint(g);
-        if(moving && trailbool && (trail[i].toggle == false)){
+        if(trailbool && (trail[i].toggle == false)&& p!=null){
           trail[i].renew(p);
           trailbool = false;
         }
