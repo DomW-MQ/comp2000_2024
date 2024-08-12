@@ -26,25 +26,25 @@ public class Main extends JFrame {
       moving = false;
       Point p = getMousePosition();
       grid.paint(g, getMousePosition());
-      if (p == null) {
-        if (prevp != null) {
+      if (p == null) { //Mouse OOB
+        if (prevp != null) { //Mouse is transitioning from inside to OOB
           System.out.println("Pointer Back Out");
           prevp = null;
         }
-      } else {
-        if (prevp == null) {
+      } else { //Mouse in JPanel boundary
+        if (prevp == null) { //Mouse was back from OOB
           System.out.println("Pointer Back In");
           System.out.println(p);
           prevp = p;
           moving = true;
-        } else if (!prevp.equals(p)) {
+        } else if (!prevp.equals(p)) { //Mouse has been moving
           System.out.println(p);
           prevp = p;
           moving = true;
         }
       }
       boolean trailbool = true;
-      for(int i = 0; i<100 ; i++){
+      for(int i = 0; i<100 ; i++){ //Trail
         trail[i].paint(g);
         if(trailbool && (trail[i].toggle == false)&& moving){
           trail[i].renew(p);
