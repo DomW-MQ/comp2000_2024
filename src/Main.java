@@ -13,6 +13,7 @@ public class Main extends JFrame {
     Point prevp;
     Trail[] trail = new Trail[100];
     boolean moving = false;
+    int trailnext = 0;
 
     public Canvas() {
       setPreferredSize(new Dimension(720, 720));
@@ -49,12 +50,17 @@ public class Main extends JFrame {
       //Trail Drawing
       boolean trailbool = true;
       for(int i = 0; i<100 ; i++){
-        trail[i].paint(g);
-        if(trailbool && (trail[i].toggle == false)&& moving){
-          trail[i].renew(p);
+        if(i == trailnext && moving){
           trailbool = false;
+          trail[i].renew(p);
         }
+        trail[i].paint(g);
+        
       }
+      if(!trailbool){
+        trailnext = (trailnext+1)%100;
+      }
+      
     }
   }
 
